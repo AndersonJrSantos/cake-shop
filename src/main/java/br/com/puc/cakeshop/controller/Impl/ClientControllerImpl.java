@@ -16,12 +16,12 @@ public class ClientControllerImpl implements ClienteController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/users")
+    @PostMapping("/clients")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         return clientService.createClient(client);
     }
 
-    @GetMapping("/users/{cpf}")
+    @GetMapping("/clients/{cpf}")
     public Client getClient(@PathVariable String cpf){
         return clientService.getClient(cpf);
     }
