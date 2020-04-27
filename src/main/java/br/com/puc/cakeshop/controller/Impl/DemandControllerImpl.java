@@ -6,6 +6,8 @@ import br.com.puc.cakeshop.service.DemandService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class DemandControllerImpl implements DemandController {
 
@@ -16,12 +18,12 @@ public class DemandControllerImpl implements DemandController {
     }
 
     @PostMapping("demands")
-    public ResponseEntity<String> createDemand(@RequestBody String cpf, String product, Integer qtd) {
-        return null;
+    public ResponseEntity<String> createDemand(@RequestBody Demand demand) {
+        return demandService.createDemand(demand);
     }
 
-    @GetMapping("demands/{cpf}")
-    public Demand getDemandClient(@PathVariable String cpf) {
-        return demandService.getDemand(cpf);
+    @GetMapping("demands")
+    public List<Demand> getDemands() {
+        return demandService.getDemands();
     }
 }

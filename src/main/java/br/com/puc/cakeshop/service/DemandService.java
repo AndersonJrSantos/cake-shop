@@ -3,9 +3,10 @@ package br.com.puc.cakeshop.service;
 import br.com.puc.cakeshop.model.Demand;
 import org.springframework.http.ResponseEntity;
 
-public interface DemandService {
-;
-    ResponseEntity<String>createDemand(Demand request);
+import java.util.List;
 
-    Demand getDemand(String cpf);
+public interface DemandService {
+    ResponseEntity<String>createDemand(Demand demand);
+
+    List<Demand> getDemands();
 }
