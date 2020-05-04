@@ -16,6 +16,7 @@ public class Product {
     private String name;
     private String taste;
     private Double weight;
+    private Integer qtd;
     private Integer stock;
     @ManyToMany(mappedBy = "products")
     @JsonIgnore
@@ -54,6 +55,14 @@ public class Product {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Integer getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(Integer qtd) {
+        this.qtd = qtd;
     }
 
     public Integer getStock() {

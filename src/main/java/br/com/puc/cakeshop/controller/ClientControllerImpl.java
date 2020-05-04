@@ -1,14 +1,14 @@
-package br.com.puc.cakeshop.controller.Impl;
+package br.com.puc.cakeshop.controller;
 
-import br.com.puc.cakeshop.controller.ClienteController;
 import br.com.puc.cakeshop.model.Client;
 import br.com.puc.cakeshop.repository.ClientRepository;
 import br.com.puc.cakeshop.service.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
-public class ClientControllerImpl implements ClienteController {
+public class ClientControllerImpl {
 
     private ClientService clientService;
 
@@ -16,6 +16,7 @@ public class ClientControllerImpl implements ClienteController {
         this.clientService = clientService;
     }
 
+    @CrossOrigin
     @PostMapping("/clients")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         return clientService.createClient(client);

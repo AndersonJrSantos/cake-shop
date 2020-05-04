@@ -1,6 +1,5 @@
-package br.com.puc.cakeshop.controller.Impl;
+package br.com.puc.cakeshop.controller;
 
-import br.com.puc.cakeshop.controller.DemandController;
 import br.com.puc.cakeshop.model.Demand;
 import br.com.puc.cakeshop.service.DemandService;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-public class DemandControllerImpl implements DemandController {
+public class DemandControllerImpl {
 
     private DemandService demandService;
 
