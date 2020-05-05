@@ -6,13 +6,15 @@ import br.com.puc.cakeshop.service.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
-public class ClientControllerImpl {
+public class ClientController {
 
     private ClientService clientService;
 
-    public ClientControllerImpl(ClientService clientService, ClientRepository clientRepository) {
+    public ClientController(ClientService clientService, ClientRepository clientRepository) {
         this.clientService = clientService;
     }
 
@@ -20,6 +22,12 @@ public class ClientControllerImpl {
     @PostMapping("/clients")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         return clientService.createClient(client);
+    }
+
+    @CrossOrigin
+    @GetMapping("/clients")
+    public List<Client> getAllClients() {
+        return clientService.getAllClients();
     }
 
     @GetMapping("/clients/{cpf}")

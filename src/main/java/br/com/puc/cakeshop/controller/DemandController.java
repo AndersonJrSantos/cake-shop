@@ -9,11 +9,11 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class DemandControllerImpl {
+public class DemandController {
 
     private DemandService demandService;
 
-    public DemandControllerImpl(DemandService demandService) {
+    public DemandController(DemandService demandService) {
         this.demandService = demandService;
     }
 

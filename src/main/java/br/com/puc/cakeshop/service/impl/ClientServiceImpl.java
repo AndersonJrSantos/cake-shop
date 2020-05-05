@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +30,10 @@ public class ClientServiceImpl implements ClientService {
 
     public Optional<Client> getClientById(Long id){
         return  clientRepository.findById(id);
+    }
+
+    public List<Client> getAllClients(){
+        return clientRepository.findAll();
     }
 
 }
