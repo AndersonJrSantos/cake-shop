@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 public class DemandController {
 
@@ -17,11 +16,13 @@ public class DemandController {
         this.demandService = demandService;
     }
 
+    @CrossOrigin
     @PostMapping("demands")
     public ResponseEntity<String> createDemand(@RequestBody Demand demand) {
         return demandService.createDemand(demand);
     }
 
+    @CrossOrigin
     @GetMapping("demands")
     public List<Demand> getDemands() {
         return demandService.getDemands();

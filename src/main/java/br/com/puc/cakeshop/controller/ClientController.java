@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+
 @RestController
 public class ClientController {
 
@@ -29,7 +29,7 @@ public class ClientController {
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
-
+    @CrossOrigin
     @GetMapping("/clients/{cpf}")
     public Client getClient(@PathVariable String cpf){
         return clientService.getClient(cpf);

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+
 @RestController
 public class ProductController {
 
@@ -17,14 +17,19 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @CrossOrigin
     @PostMapping("products")
     public ResponseEntity<String> createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
+
+    @CrossOrigin
     @GetMapping("products")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
+
+    @CrossOrigin
     @GetMapping("products/{name}")
     public Product getProduct(@PathVariable String name) {
         return productService.getProduct(name);

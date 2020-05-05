@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+
 @RestController
 public class EmployeeController {
 
@@ -19,16 +19,19 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @CrossOrigin
     @PostMapping("employee")
     public ResponseEntity<String> createEmployee(@RequestBody Employee employee) {
         return employeeService.createEmployee(employee);
     }
 
+    @CrossOrigin
     @GetMapping("employee")
     public List<Employee> getEmployees(){
         return employeeService.getAllEmployee();
     }
 
+    @CrossOrigin
     @GetMapping("employee/{id}")
     public Optional<Employee> getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployeeById(id);
