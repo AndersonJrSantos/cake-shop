@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/clients")
 public class ClientController {
 
     private ClientService clientService;
@@ -18,19 +19,19 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @CrossOrigin
-    @PostMapping("/clients")
+   
+    @PostMapping("")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         return clientService.createClient(client);
     }
 
-    @CrossOrigin
-    @GetMapping("/clients")
+    
+    @GetMapping("")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
-    @CrossOrigin
-    @GetMapping("/clients/{cpf}")
+    
+    @GetMapping("/{cpf}")
     public Client getClient(@PathVariable String cpf){
         return clientService.getClient(cpf);
     }
