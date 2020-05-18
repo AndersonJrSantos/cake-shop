@@ -1,5 +1,7 @@
 package br.com.puc.cakeshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Set;
 
 @Entity
 public class Client implements Serializable {
-    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,6 +18,10 @@ public class Client implements Serializable {
     private String cpf;
     private String address;
     private String city;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Demand> demand;
 
     public Client() {
     }
@@ -64,10 +70,15 @@ public class Client implements Serializable {
         return city;
     }
 
-
     public void setCity(String city) {
         this.city = city;
+    }
 
+    public List<Demand> getDemand() {
+        return demand;
+    }
 
+    public void setDemand(List<Demand> demand) {
+        this.demand = demand;
     }
 }

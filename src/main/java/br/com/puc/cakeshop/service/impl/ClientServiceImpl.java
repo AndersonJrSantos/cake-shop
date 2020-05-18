@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -25,8 +27,18 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findByCpf(cpf);
     }
 
-    public  Long getClientById(String id){
-        return  clientRepository.findById(id);
+    public Client getClientById(String id) {
+        return clientRepository.findById(id);
     }
+
+    public List<Client> getClients() {
+        return clientRepository.findAll();
+    }
+
+    public void deleteClient(String cpf) {
+        Client client = clientRepository.findByCpf(cpf);
+        clientRepository.delete(client);
+    }
+
 
 }

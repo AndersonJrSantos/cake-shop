@@ -9,5 +9,5 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     public Client findByCpf(String cpf);
 
-    Long findById(String id);
+    Client findById(String id);
 }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -23,5 +25,14 @@ public class ProductServiceImpl implements ProductService {
 
     public Product getProduct(String name) {
         return productRepository.findByName(name);
+    }
+
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id).get();
+        productRepository.delete(product);
+    }
+
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
 }
