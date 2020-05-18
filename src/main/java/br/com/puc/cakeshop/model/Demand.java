@@ -2,22 +2,23 @@ package br.com.puc.cakeshop.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Demand implements Serializable {
-    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
     private Client client;
 
-    @OneToMany(mappedBy = "demand")
-    private Set<Request> products;
+    @ManyToMany
+    private List<Product> products;
 
-    private Integer qtd;
+    @ElementCollection(targetClass=Integer.class)
+    private List<Integer>qtd;
 
     public Demand() {
     }
@@ -38,19 +39,19 @@ public class Demand implements Serializable {
         this.client = client;
     }
 
-    public Set<Request> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Request> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
-    public Integer getQtd() {
-        return qtd;
+    public Integer getQtd(int i) {
+        return qtd.get(i);
     }
 
-    public void setQtd(Integer qtd) {
+    public void setQtd(List<Integer> qtd) {
         this.qtd = qtd;
     }
 }
