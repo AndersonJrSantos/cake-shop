@@ -6,7 +6,13 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface DemandService {
-    ResponseEntity<String>createDemand(Demand demand);
+
+    ResponseEntity<String> createDemand(Demand request);
+
+    Demand getDemand(String cpf);
+
+    void deleteDemand(Long id);
 
     List<Demand> getDemands();
+
 }

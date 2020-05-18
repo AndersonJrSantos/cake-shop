@@ -28,7 +28,7 @@ public class ClientController {
     
     @GetMapping("")
     public List<Client> getAllClients() {
-        return clientService.getAllClients();
+        return clientService.getClients();
     }
     
     @GetMapping("/{cpf}")

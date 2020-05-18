@@ -6,11 +6,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Demand")
-public class Demand  {
+public class Demand {
 
     @Id
-    @GeneratedValue( strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -19,6 +18,9 @@ public class Demand  {
 
     @ManyToMany
     private List<Product> products;
+
+    @ElementCollection(targetClass = Integer.class)
+    private List<Integer> qtd;
 
     public Demand() {
     }
@@ -46,4 +48,13 @@ public class Demand  {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public Integer getQtd(int i) {
+        return qtd.get(i);
+    }
+
+    public void setQtd(List<Integer> qtd) {
+        this.qtd = qtd;
+    }
+
 }

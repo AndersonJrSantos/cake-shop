@@ -28,12 +28,18 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findByCpf(cpf);
     }
 
-    public Optional<Client> getClientById(Long id){
-        return  clientRepository.findById(id);
+    public Client getClientById(String id) {
+        return clientRepository.findById(id);
     }
 
-    public List<Client> getAllClients(){
+    public List<Client> getClients() {
         return clientRepository.findAll();
     }
+
+    public void deleteClient(String cpf) {
+        Client client = clientRepository.findByCpf(cpf);
+        clientRepository.delete(client);
+    }
+
 
 }

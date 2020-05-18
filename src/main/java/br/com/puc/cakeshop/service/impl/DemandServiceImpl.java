@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class DemandServiceImpl implements DemandService {
@@ -21,7 +23,8 @@ public class DemandServiceImpl implements DemandService {
     ClientService clientService;
     ProductService productService;
 
-    public DemandServiceImpl(DemandRepository demandRepository, ClientService clientService, ProductService productService) {
+    public DemandServiceImpl(DemandRepository demandRepository,
+                             ClientService clientService, ProductService productService) {
         this.demandRepository = demandRepository;
         this.clientService = clientService;
         this.productService = productService;
@@ -35,10 +38,24 @@ public class DemandServiceImpl implements DemandService {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não encontrado");
             }
             List<Product> products = new ArrayList<>();
+            List<Integer> qtdRequest = new ArrayList<>();
             for (int i = 0; i < demand.getProducts().size(); i++) {
                 Product product = productService.getProduct(demand.getProducts().get(i).getName());
+
                 if (product != null) {
-                    products.add(product);
+
+                    int stock = product.getStock();
+                    qtdRequest.add(demand.getQtd(i));
+
+
+                    if (qtdRequest.get(i) > stock){
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Quantidade não disponivel");
+
+                    }else {
+                        product.setStock(stock - qtdRequest.get(i));
+                        products.add(product);
+                    }
+
                 }else {
                     if (product == null && products.size()<0){
                         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produtos não encontrados");
@@ -59,5 +76,15 @@ public class DemandServiceImpl implements DemandService {
 
     public List<Demand> getDemands() {
         return demandRepository.findAll();
+
+    }
+
+    public Demand getDemand(String cpf) {
+        return demandRepository.findByClient_Cpf(cpf);
+    }
+
+    public void deleteDemand(Long id){
+        Demand demand =demandRepository.findById(id).get();
+        demandRepository.delete(demand);
     }
 }

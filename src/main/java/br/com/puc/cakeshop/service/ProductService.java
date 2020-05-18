@@ -6,13 +6,15 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface ProductService {
 
     ResponseEntity<String> createProduct(Product product);
 
     Product getProduct(String name);
 
-    List<Product> getAllProducts();
+    void deleteProduct(Long id);
 
-    Optional<Product> getProductById(Long id);
+    List<Product> getProducts();
+
 }

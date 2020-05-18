@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Product")
+
 public class Product {
 
     @Id
@@ -18,9 +18,11 @@ public class Product {
     private Double weight;
     private Integer qtd;
     private Integer stock;
-    @ManyToMany(mappedBy = "products")
+
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Demand> demand;
+
 
     public Product() {
     }
@@ -80,4 +82,6 @@ public class Product {
     public void setDemand(Set<Demand> demand) {
         this.demand = demand;
     }
+
+
 }

@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "Client")
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

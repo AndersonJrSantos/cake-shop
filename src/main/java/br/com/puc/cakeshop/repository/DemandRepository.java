@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface DemandRepository extends JpaRepository<Demand,Long> {
 
+    Demand findByClient_Cpf(String cpf);
+
 }

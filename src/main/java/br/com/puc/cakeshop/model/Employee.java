@@ -3,7 +3,6 @@ package br.com.puc.cakeshop.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
 public class Employee {
 
     @Id
